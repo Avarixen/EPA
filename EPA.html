@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluasi Pendaftaran Admin - Avarixen</title>
-    <!-- FIREBASE — DITAMBAHKAN -->
+    <!-- FIREBASE COMPAT — LANGSUNG JALAN, TANPA npm -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <style>
         * {
             margin: 0;
@@ -464,7 +464,7 @@
             background-color: #757575;
         }
 
-        /* Notifikasi Server */
+        /* Notifikasi */
         .notifikasi {
             position: fixed;
             top: 15px;
@@ -483,7 +483,7 @@
 </head>
 <body>
 
-    <!-- NOTIFIKASI SERVER -->
+    <!-- NOTIFIKASI -->
     <div class="notifikasi" id="notifikasi"></div>
 
     <!-- ===================== HALAMAN 1: DATA DIRI ===================== -->
@@ -503,32 +503,32 @@
 
             <div class="form-group">
                 <label>Nama:</label>
-                <input type="text" id="nama" maxlength="37" placeholder="Harap Nama Lengkap!">
+                <input type="text" id="nama" placeholder="Harap Nama Lengkap!">
             </div>
 
             <div class="form-group">
                 <label>Umur:</label>
-                <input type="text" id="umur" inputmode="numeric" maxlength="2" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,2)" placeholder="Umurmu Saat Ini">
+                <input type="text" id="umur" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,2)" placeholder="Umurmu Saat Ini">
             </div>
 
             <div class="form-group">
                 <label>No. Peserta:</label>
-                <input type="password" id="nopeserta" maxlength="15" placeholder="Gunakan Kartumu!">
+                <input type="password" id="nopeserta" placeholder="Gunakan Kartumu!">
             </div>
 
             <div class="form-group">
                 <label>Username:</label>
-                <input type="text" id="username" maxlength="10" placeholder="Gunakan Kartumu!">
+                <input type="text" id="username" placeholder="Gunakan Kartumu!">
             </div>
 
             <div class="form-group">
                 <label>Password:</label>
-                <input type="text" id="password" maxlength="10" placeholder="Gunakan Kartumu!">
+                <input type="text" id="password" placeholder="Gunakan Kartumu!">
             </div>
 
             <div class="form-group">
                 <label>Kode Zip:</label>
-                <input type="text" id="kodezip" maxlength="5" placeholder="Ambil di halaman berikutnya!">
+                <input type="text" id="kodezip" placeholder="Ambil di halaman berikutnya!">
             </div>
 
             <div class="form-group">
@@ -563,403 +563,404 @@
     </div>
 
     <!-- ===================== HALAMAN 3: FORMULIR JAWABAN ===================== -->
-     <div class="halaman-3" id="halaman3">
-         <div class="header-top">
-             <div class="header-text">
-                 <h1>Evaluasi Pendaftaran Admin (EPA)</h1>
-                 <h2>Tahap 1: Pertanyaan Umum</h2>
-             </div>
-         </div>
-         <div class="form-section">
-             <div class="peringatan" id="teksPeringatan3">Harap isi semua pertanyaan terlebih dahulu!</div>
-             <div class="form-group">
-                 <label>1. Apa yang membuat kamu tertarik untuk bergabung menjadi Admin di Tim Avarixen?</label>
-                 <textarea id="jawaban1" maxlength="1000" placeholder="Ketik jawaban Anda..."></textarea>
-                 <div class="info-karakter">Maksimal 1000 karakter | <span id="sisa1">1000</span> tersisa</div>
-             </div>
-             <div class="form-group">
-                 <label>2. Bagaimana jika kamu diminta untuk menciptakan sebuah ide yang bagus untuk Avarixen?</label>
-                 <textarea id="jawaban2" maxlength="1000" placeholder="Ketik jawaban Anda..."></textarea>
-                 <div class="info-karakter">Maksimal 1000 karakter | <span id="sisa2">1000</span> tersisa</div>
-             </div>
-             <div class="form-group">
-                 <label>3. Bagaimana cara kamu mengatur waktu antara kegiatan pribadi dan tugas jika diterima menjadi Admin?</label>
-                 <textarea id="jawaban3" maxlength="1000" placeholder="Ketik jawaban Anda..."></textarea>
-                 <div class="info-karakter">Maksimal 1000 karakter | <span id="sisa3">1000</span> tersisa</div>
-             </div>
-             <div class="form-group">
-                 <label>4. Apa yang akan kamu lakukan jika terjadi perselisihan antar anggota dalam tim?</label>
-                 <textarea id="jawaban4" maxlength="1000" placeholder="Ketik jawaban Anda..."></textarea>
-                 <div class="info-karakter">Maksimal 1000 karakter | <span id="sisa4">1000</span> tersisa</div>
-             </div>
-             <div class="form-group">
-                 <label>5. Posisi apa yang ingin Anda tempati?</label>
-                 <div class="radio-group" id="grupPosisi">
-                     <label class="radio-option">
-                         <input type="radio" name="posisi" value="ketua" onchange="cekPilihanPosisi()"> Ketua
-                     </label>
-                     <label class="radio-option">
-                         <input type="radio" name="posisi" value="wakil" onchange="cekPilihanPosisi()"> Wakil Ketua
-                     </label>
-                     <label class="radio-option">
-                         <input type="radio" name="posisi" value="sekretaris" onchange="cekPilihanPosisi()"> Sekretaris
-                     </label>
-                     <label class="radio-option">
-                         <input type="radio" name="posisi" value="lainnya" onchange="cekPilihanPosisi()"> Lainnya
-                     </label>
-                     <div class="bagian-lainnya" id="bagianLainnya">
-                         <textarea id="posisiLain" maxlength="1000" placeholder="Sebutkan posisi yang diinginkan..."></textarea>
-                         <div class="info-karakter">Maksimal 1000 karakter | <span id="sisaLain">1000</span> tersisa</div>
-                     </div>
-                 </div>
-             </div>
-             <hr class="divider">
-             <div class="btn-group">
-                 <button class="btn-kembali" onclick="kembaliKeHalaman1()">Kembali</button>
-                 <button class="btn-sudahi" onclick="cekDanTampilkanKonfirmasi()">Sudahi</button>
-             </div>
-         </div>
-         <div class="footer-area"></div>
-     </div>
-     <!-- ===================== KOTAK KONFIRMASI ===================== -->
-     <div class="overlay" id="overlayKonfirmasi">
-         <div class="kotak-konfirmasi">
-             <p>Silahkan cermati jawaban anda baik-baik, jika anda merasa ragu. Anda dapat menggantinya dengan yang lain, semua tidak ada jawaban yang benar maupun salah</p>
-             <div class="btn-konfirmasi">
-                 <button class="btn-ragu" onclick="tutupKonfirmasi()">Merasa Ragu</button>
-                 <button class="btn-yakin" onclick="simpanDanTampilkanSelesai()">Yakin!</button>
-             </div>
-         </div>
-     </div>
-     <!-- ===================== HALAMAN SELESAI ===================== -->
-      <div class="halaman-selesai" id="halamanSelesai">
-          <div class="kotak-tersembunyi" onclick="togglePanelDaftar()"></div>
-          <div class="panel-daftar" id="panelDaftar">
-              <div class="judul-panel">
-                  <span>Data Tersimpan (Server)</span>
-                  <button class="btn-hapus-semua" onclick="hapusSemuaData()">Hapus Semua</button>
-              </div>
-              <div id="isiDaftar" class="kosong">Belum ada data</div>
-          </div>
-          <div class="teks-selesai">
-              SELAMAT, ANDA TELAH<br>
-              MENYELESAIKAN EPA!<br>
-              <br>
-              MOHON TUNGGU<br>
-              JAWABAN KAMI DARI<br>
-              EMAIL ANDA!!!
-          </div>
-      </div>
-      <!-- ===================== TAMPILAN DETAIL DATA ===================== -->
-      <div class="overlay-detail" id="overlayDetail">
-          <div class="kotak-detail" id="kotakDetail"></div>
-          <button class="tutup-detail" onclick="tutupDetail()">Tutup</button>
-      </div>
-      <script>
-          // ==================================================
-          // 🔥 KONFIGURASI FIREBASE — SERVER DATABASE
-          // ==================================================
-          const firebaseConfig = {
-  const firebaseConfig = {
-  apiKey: "AIzaSyDr3nPOorK1PYwFlNRU_-3dswf-Lb46ees",
-  authDomain: "avarixen-epa.firebaseapp.com",
-  projectId: "avarixen-epa",
-  storageBucket: "avarixen-epa.firebasestorage.app",
-  messagingSenderId: "489663610416",
-  appId: "1:489663610416:web:18dceca36244bfac0bb7f5"
-};
+    <div class="halaman-3" id="halaman3">
+        <div class="header-top">
+            <div class="header-text">
+                <h1>Evaluasi Pendaftaran Admin (EPA)</h1>
+                <h2>Tahap 1: Pertanyaan Umum</h2>
+            </div>
+        </div>
 
-          firebase.initializeApp(firebaseConfig);
-          const db = firebase.firestore();
-          const koleksi = db.collection('pendaftaran_epa');
-          // ==================================================
-          // Notifikasi
-          function tampilkanNotifikasi(pesan, tipe = 'sukses') {
-              const notif = document.getElementById('notifikasi');
-              notif.textContent = pesan;
-              notif.className = 'notifikasi ' + tipe;
-              notif.style.display = 'block';
-              setTimeout(() => notif.style.display = 'none', 3000);
-          }
-          // -------------------- HALAMAN 1 --------------------
-          function cekDanLanjutHalaman1() {
-              const nama = document.getElementById('nama').value.trim();
-              const umur = document.getElementById('umur').value.trim();
-              const nopeserta = document.getElementById('nopeserta').value.trim();
-              const username = document.getElementById('username').value.trim();
-              const password = document.getElementById('password').value.trim();
-              const kodezip = document.getElementById('kodezip').value.trim();
-              const email = document.getElementById('email').value.trim();
-              const peringatan = document.getElementById('teksPeringatan1');
-              document.querySelectorAll('.halaman-1 input').forEach(input => input.classList.remove('invalid'));
-              if (!nama || !umur || !nopeserta || !username || !password || !email) {
-                  peringatan.style.display = 'block';
-                  if (!nama) document.getElementById('nama').classList.add('invalid');
-                  if (!umur) document.getElementById('umur').classList.add('invalid');
-                  if (!nopeserta) document.getElementById('nopeserta').classList.add('invalid');
-                  if (!username) document.getElementById('username').classList.add('invalid');
-                  if (!password) document.getElementById('password').classList.add('invalid');
-                  if (!email) document.getElementById('email').classList.add('invalid');
-                  setTimeout(() => peringatan.style.display = 'none', 3000);
-                  return;
-              }
-              simpanDataSesi();
-              if (!kodezip) {
-                  document.getElementById('halaman1').style.display = 'none';
-                  document.getElementById('halaman2').style.display = 'flex';
-                  mulaiHitungMundur();
-              } else {
-                  document.getElementById('halaman1').style.display = 'none';
-                  document.getElementById('halaman3').style.display = 'block';
-              }
-          }
-          function simpanDataSesi() {
-              sessionStorage.setItem('nama', document.getElementById('nama').value);
-              sessionStorage.setItem('umur', document.getElementById('umur').value);
-              sessionStorage.setItem('nopeserta', document.getElementById('nopeserta').value);
-              sessionStorage.setItem('username', document.getElementById('username').value);
-              sessionStorage.setItem('password', document.getElementById('password').value);
-              sessionStorage.setItem('kodezip', document.getElementById('kodezip').value);
-              sessionStorage.setItem('email', document.getElementById('email').value);
-          }
-          function kembaliKeHalaman1() {
-              document.getElementById('halaman2').style.display = 'none';
-              document.getElementById('halaman3').style.display = 'none';
-              document.getElementById('halamanSelesai').style.display = 'none';
-              document.getElementById('halaman1').style.display = 'block';
-          }
-          function lompatKeHalamanSelesai() {
-              document.getElementById('halaman1').style.display = 'none';
-              document.getElementById('halamanSelesai').style.display = 'flex';
-              perbaruiDaftarFile();
-          }
-          // -------------------- HALAMAN 2 --------------------
-          let waktu = 60;
-          let kodeSaatIni = '';
-          function mulaiHitungMundur() {
-              waktu = 60;
-              const elemenWaktu = document.getElementById('tampilanWaktu');
-              const wadahKode = document.getElementById('wadahKode');
-              const elemenKode = document.getElementById('tampilanKode');
-              const tombolSalin = document.getElementById('tombolSalin');
-              elemenWaktu.style.display = 'block';
-              wadahKode.style.display = 'none';
-              const hitungMundur = setInterval(() => {
-                  const menit = Math.floor(waktu / 60);
-                  const detik = waktu % 60;
-                  const formatMenit = menit.toString().padStart(2, '0');
-                  const formatDetik = detik.toString().padStart(2, '0');
-                  elemenWaktu.textContent = `${formatMenit}:${formatDetik}`;
-                  waktu--;
-                  if (waktu < 0) {
-                      clearInterval(hitungMundur);
-                      elemenWaktu.style.display = 'none';
-                      kodeSaatIni = buatKodePola();
-                      elemenKode.textContent = kodeSaatIni;
-                      wadahKode.style.display = 'block';
-                      tombolSalin.onclick = function() {
-                          navigator.clipboard.writeText(kodeSaatIni)
-                              .then(() => {
-                                  tombolSalin.textContent = 'Tersalin!';
-                                  setTimeout(() => tombolSalin.textContent = 'Salin', 1500);
-                              })
-                              .catch(() => alert('Gagal menyalin kode'));
-                      };
-                  }
-              }, 1000);
-          }
-          function buatKodePola() {
-              const huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-              const angka = '0123456789';
-              let kode = '';
-              const mulaiHuruf = Math.random() > 0.5;
-              if (mulaiHuruf) {
-                  kode += huruf[Math.floor(Math.random() * huruf.length)];
-                  kode += angka[Math.floor(Math.random() * angka.length)];
-                  kode += huruf[Math.floor(Math.random() * huruf.length)];
-                  kode += angka[Math.floor(Math.random() * angka.length)];
-                  kode += huruf[Math.floor(Math.random() * huruf.length)];
-              } else {
-                  kode += angka[Math.floor(Math.random() * angka.length)];
-                  kode += huruf[Math.floor(Math.random() * huruf.length)];
-                  kode += angka[Math.floor(Math.random() * angka.length)];
-                  kode += huruf[Math.floor(Math.random() * huruf.length)];
-                  kode += angka[Math.floor(Math.random() * angka.length)];
-              }
-              return kode;
-          }
-          // -------------------- HALAMAN 3 --------------------
-          function updateSisa(idInput, idInfo, max) {
-              const input = document.getElementById(idInput);
-              const info = document.getElementById(idInfo);
-              input.addEventListener('input', () => {
-                  const sisa = max - input.value.length;
-                  info.textContent = sisa;
-              });
-          }
-          function cekPilihanPosisi() {
-              const pilihan = document.querySelector('input[name="posisi"]:checked');
-              const bagian = document.getElementById('bagianLainnya');
-              bagian.style.display = (pilihan && pilihan.value === 'lainnya') ? 'block' : 'none';
-          }
-          function cekDanTampilkanKonfirmasi() {
-              const j1 = document.getElementById('jawaban1').value.trim();
-              const j2 = document.getElementById('jawaban2').value.trim();
-              const j3 = document.getElementById('jawaban3').value.trim();
-              const j4 = document.getElementById('jawaban4').value.trim();
-              const pilihanPosisi = document.querySelector('input[name="posisi"]:checked');
-              const posisiLain = document.getElementById('posisiLain').value.trim();
-              const peringatan = document.getElementById('teksPeringatan3');
-              document.querySelectorAll('textarea, .radio-group').forEach(el => el.classList.remove('invalid'));
-              let valid = true;
-              if (!j1) { document.getElementById('jawaban1').classList.add('invalid'); valid = false; }
-              if (!j2) { document.getElementById('jawaban2').classList.add('invalid'); valid = false; }
-              if (!j3) { document.getElementById('jawaban3').classList.add('invalid'); valid = false; }
-              if (!j4) { document.getElementById('jawaban4').classList.add('invalid'); valid = false; }
-              if (!pilihanPosisi) { document.getElementById('grupPosisi').classList.add('invalid'); valid = false; }
-              if (pilihanPosisi && pilihanPosisi.value === 'lainnya' && !posisiLain) {
-                  document.getElementById('posisiLain').classList.add('invalid'); valid = false;
-              }
-              if (!valid) {
-                  peringatan.style.display = 'block';
-                  setTimeout(() => peringatan.style.display = 'none', 3000);
-                  return;
-              }
-              document.getElementById('overlayKonfirmasi').style.display = 'flex';
-          }
-          function tutupKonfirmasi() {
-              document.getElementById('overlayKonfirmasi').style.display = 'none';
-          }
-          function getTeksPosisi() {
-              const pilihan = document.querySelector('input[name="posisi"]:checked')?.value;
-              if (pilihan === 'ketua') return 'Ketua';
-              if (pilihan === 'wakil') return 'Wakil Ketua';
-              if (pilihan === 'sekretaris') return 'Sekretaris';
-              if (pilihan === 'lainnya') return document.getElementById('posisiLain').value.trim() || 'Lainnya';
-              return '-';
-          }
-          // -------------------- SIMPAN DATA KE SERVER FIREBASE --------------------
-          async function simpanDanTampilkanSelesai() {
-              const dataBaru = {
-                  nama: sessionStorage.getItem('nama') || '-',
-                  umur: sessionStorage.getItem('umur') || '-',
-                  noPeserta: sessionStorage.getItem('nopeserta') || '-',
-                  username: sessionStorage.getItem('username') || '-',
-                  password: sessionStorage.getItem('password') || '-',
-                  kodeZip: sessionStorage.getItem('kodezip') || '-',
-                  email: sessionStorage.getItem('email') || '-',
-                  jawaban1: document.getElementById('jawaban1').value.trim() || '-',
-                  jawaban2: document.getElementById('jawaban2').value.trim() || '-',
-                  jawaban3: document.getElementById('jawaban3').value.trim() || '-',
-                  jawaban4: document.getElementById('jawaban4').value.trim() || '-',
-                  posisi: getTeksPosisi(),
-                  tanggal: new Date().toLocaleString('id-ID'),
-                  timestamp: firebase.firestore.FieldValue.serverTimestamp()
-              };
-              try {
-                  // SIMPAN KE FIREBASE SERVER
-                  await koleksi.add(dataBaru);
-                  tampilkanNotifikasi('✅ Data berhasil dikirim ke Server!');
-              } catch (err) {
-                  console.error('Error simpan:', err);
-                  tampilkanNotifikasi('⚠️ Gagal simpan: ' + err.message, 'error');
-              }
-              sessionStorage.clear();
-              document.getElementById('overlayKonfirmasi').style.display = 'none';
-              document.getElementById('halaman3').style.display = 'none';
-              document.getElementById('halamanSelesai').style.display = 'flex';
-              perbaruiDaftarFile();
-          }
-          // -------------------- PANEL DATA — DARI FIREBASE --------------------
-          function togglePanelDaftar() {
-              const panel = document.getElementById('panelDaftar');
-              panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-              if (panel.style.display === 'block') perbaruiDaftarFile();
-          }
-          async function perbaruiDaftarFile() {
-              const daftar = document.getElementById('isiDaftar');
-              try {
-                  const snapshot = await koleksi.orderBy('timestamp', 'desc').get();
-                  if (snapshot.empty) {
-                      daftar.innerHTML = '<div class="kosong">Belum ada data</div>';
-                      return;
-                  }
-                  daftar.innerHTML = '';
-                  let no = 1;
-                  snapshot.forEach(doc => {
-                      const data = doc.data();
-                      const item = document.createElement('div');
-                      item.className = 'item-data';
-                      item.innerHTML = `
-                          <div class="info-data" onclick="tampilkanDetail('${doc.id}')">
-                              Data ${no}: ${data.nama} | ${data.tanggal}
-                          </div>
-                          <button class="btn-hapus" onclick="hapusSatuData('${doc.id}')">Hapus</button>
-                      `;
-                      daftar.appendChild(item);
-                      no++;
-                  });
-              } catch (err) {
-                  daftar.innerHTML = `<div class="kosong">Gagal memuat data: ${err.message}</div>`;
-              }
-          }
-          async function tampilkanDetail(docId) {
-              try {
-                  const doc = await koleksi.doc(docId).get();
-                  if (!doc.exists) return;
-                  const data = doc.data();
-                  const teks = `Nama: ${data.nama}
- Umur: ${data.umur}
- No. Peserta: ${data.noPeserta}
- Username: ${data.username}
- Password: ${data.password}
- Kode zip: ${data.kodeZip}
- Email: ${data.email}
- 1. ${data.jawaban1}
- 2. ${data.jawaban2}
- 3. ${data.jawaban3}
- 4. ${data.jawaban4}
- 5. ${data.posisi}
- Tanggal disimpan: ${data.tanggal}`;
-                  document.getElementById('kotakDetail').textContent = teks;
-                  document.getElementById('overlayDetail').style.display = 'flex';
-              } catch (err) {
-                  alert('Gagal memuat detail: ' + err.message);
-              }
-          }
-          function tutupDetail() {
-              document.getElementById('overlayDetail').style.display = 'none';
-          }
-          async function hapusSatuData(docId) {
-              if (!confirm('Yakin ingin menghapus data ini?')) return;
-              try {
-                  await koleksi.doc(docId).delete();
-                  tampilkanNotifikasi('✅ Data dihapus dari Server!');
-                  perbaruiDaftarFile();
-              } catch (err) {
-                  alert('Gagal hapus: ' + err.message);
-              }
-          }
-          async function hapusSemuaData() {
-              if (!confirm('Yakin ingin menghapus SEMUA data dari Server?')) return;
-              try {
-                  const snapshot = await koleksi.get();
-                  const batch = db.batch();
-                  snapshot.forEach(doc => batch.delete(doc.ref));
-                  await batch.commit();
-                  tampilkanNotifikasi('✅ Semua data dihapus!');
-                  perbaruiDaftarFile();
-              } catch (err) {
-                  alert('Gagal hapus: ' + err.message);
-              }
-          }
-          window.onload = function() {
-              updateSisa('jawaban1', 'sisa1', 1000);
-              updateSisa('jawaban2', 'sisa2', 1000);
-              updateSisa('jawaban3', 'sisa3', 1000);
-              updateSisa('jawaban4', 'sisa4', 1000);
-              updateSisa('posisiLain', 'sisaLain', 1000);
-          };
-      </script>
-  </body>
-  </html>
+        <div class="form-section">
+            <div class="peringatan" id="teksPeringatan3">Harap isi semua pertanyaan terlebih dahulu!</div>
+
+            <div class="form-group">
+                <label>1. Apa yang membuat kamu tertarik untuk bergabung menjadi Admin di Tim Avarixen?</label>
+                <textarea id="jawaban1" placeholder="Ketik jawaban Anda..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>2. Bagaimana jika kamu diminta untuk menciptakan sebuah ide yang bagus untuk Avarixen?</label>
+                <textarea id="jawaban2" placeholder="Ketik jawaban Anda..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>3. Bagaimana cara kamu mengatur waktu antara kegiatan pribadi dan tugas jika diterima menjadi Admin?</label>
+                <textarea id="jawaban3" placeholder="Ketik jawaban Anda..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>4. Apa yang akan kamu lakukan jika terjadi perselisihan antar anggota dalam tim?</label>
+                <textarea id="jawaban4" placeholder="Ketik jawaban Anda..."></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>5. Posisi apa yang ingin Anda tempati?</label>
+                <div class="radio-group" id="grupPosisi">
+                    <label class="radio-option">
+                        <input type="radio" name="posisi" value="ketua" onchange="cekPilihanPosisi()"> Ketua
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="posisi" value="wakil" onchange="cekPilihanPosisi()"> Wakil Ketua
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="posisi" value="sekretaris" onchange="cekPilihanPosisi()"> Sekretaris
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="posisi" value="lainnya" onchange="cekPilihanPosisi()"> Lainnya
+                    </label>
+
+                    <div class="bagian-lainnya" id="bagianLainnya">
+                        <textarea id="posisiLain" placeholder="Sebutkan posisi yang diinginkan..."></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="divider">
+
+            <div class="btn-group">
+                <button class="btn-kembali" onclick="kembaliKeHalaman1()">Kembali</button>
+                <button class="btn-sudahi" onclick="cekDanTampilkanKonfirmasi()">Sudahi</button>
+            </div>
+        </div>
+
+        <div class="footer-area"></div>
+    </div>
+
+    <!-- ===================== KOTAK KONFIRMASI ===================== -->
+    <div class="overlay" id="overlayKonfirmasi">
+        <div class="kotak-konfirmasi">
+            <p>Silahkan cermati jawaban anda baik-baik, jika anda merasa ragu. Anda dapat menggantinya dengan yang lain, semua tidak ada jawaban yang benar maupun salah</p>
+            <div class="btn-konfirmasi">
+                <button class="btn-ragu" onclick="tutupKonfirmasi()">Merasa Ragu</button>
+                <button class="btn-yakin" onclick="simpanDanTampilkanSelesai()">Yakin!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== HALAMAN SELESAI ===================== -->
+     <div class="halaman-selesai" id="halamanSelesai">
+         <div class="kotak-tersembunyi" onclick="togglePanelDaftar()"></div>
+         <div class="panel-daftar" id="panelDaftar">
+             <div class="judul-panel">
+                 <span>Data Tersimpan (Server)</span>
+                 <button class="btn-hapus-semua" onclick="hapusSemuaData()">Hapus Semua</button>
+             </div>
+             <div id="isiDaftar" class="kosong">Belum ada data</div>
+         </div>
+         <div class="teks-selesai">
+             SELAMAT, ANDA TELAH<br>
+             MENYELESAIKAN EPA!<br>
+             <br>
+             MOHON TUNGGU<br>
+             JAWABAN KAMI DARI<br>
+             EMAIL ANDA!!!
+         </div>
+     </div>
+
+     <!-- ===================== TAMPILAN DETAIL DATA ===================== -->
+     <div class="overlay-detail" id="overlayDetail">
+         <div class="kotak-detail" id="kotakDetail"></div>
+         <button class="tutup-detail" onclick="tutupDetail()">Tutup</button>
+     </div>
+
+     <script>
+         // ==================================================
+         // 🔥 FIREBASE CONFIG — EPA PROJECT
+         // ==================================================
+         const firebaseConfig = {
+             apiKey: "AIzaSyDr3nPOorK1PYwFlNRU_-3dswf-Lb46ees",
+             authDomain: "avarixen-epa.firebaseapp.com",
+             projectId: "avarixen-epa",
+             storageBucket: "avarixen-epa.firebasestorage.app",
+             messagingSenderId: "489663610416",
+             appId: "1:489663610416:web:18dceca36244bfac0bb7f5"
+         };
+         firebase.initializeApp(firebaseConfig);
+         const db = firebase.firestore();
+         const koleksi = db.collection('pendaftaran_epa');
+         // ==================================================
+
+         // Notifikasi
+         function tampilkanNotifikasi(pesan, tipe = 'sukses') {
+             const notif = document.getElementById('notifikasi');
+             notif.textContent = pesan;
+             notif.className = 'notifikasi ' + tipe;
+             notif.style.display = 'block';
+             setTimeout(() => notif.style.display = 'none', 3000);
+         }
+
+         // -------------------- HALAMAN 1 --------------------
+         function cekDanLanjutHalaman1() {
+             const nama = document.getElementById('nama').value.trim();
+             const umur = document.getElementById('umur').value.trim();
+             const nopeserta = document.getElementById('nopeserta').value.trim();
+             const username = document.getElementById('username').value.trim();
+             const password = document.getElementById('password').value.trim();
+             const kodezip = document.getElementById('kodezip').value.trim();
+             const email = document.getElementById('email').value.trim();
+             const peringatan = document.getElementById('teksPeringatan1');
+             document.querySelectorAll('.halaman-1 input').forEach(input => input.classList.remove('invalid'));
+             if (!nama || !umur || !nopeserta || !username || !password || !email) {
+                 peringatan.style.display = 'block';
+                 if (!nama) document.getElementById('nama').classList.add('invalid');
+                 if (!umur) document.getElementById('umur').classList.add('invalid');
+                 if (!nopeserta) document.getElementById('nopeserta').classList.add('invalid');
+                 if (!username) document.getElementById('username').classList.add('invalid');
+                 if (!password) document.getElementById('password').classList.add('invalid');
+                 if (!email) document.getElementById('email').classList.add('invalid');
+                 setTimeout(() => peringatan.style.display = 'none', 3000);
+                 return;
+             }
+             simpanDataSesi();
+             if (!kodezip) {
+                 document.getElementById('halaman1').style.display = 'none';
+                 document.getElementById('halaman2').style.display = 'flex';
+                 mulaiHitungMundur();
+             } else {
+                 document.getElementById('halaman1').style.display = 'none';
+                 document.getElementById('halaman3').style.display = 'block';
+             }
+         }
+         function simpanDataSesi() {
+             sessionStorage.setItem('nama', document.getElementById('nama').value);
+             sessionStorage.setItem('umur', document.getElementById('umur').value);
+             sessionStorage.setItem('nopeserta', document.getElementById('nopeserta').value);
+             sessionStorage.setItem('username', document.getElementById('username').value);
+             sessionStorage.setItem('password', document.getElementById('password').value);
+             sessionStorage.setItem('kodezip', document.getElementById('kodezip').value);
+             sessionStorage.setItem('email', document.getElementById('email').value);
+         }
+         function kembaliKeHalaman1() {
+             document.getElementById('halaman2').style.display = 'none';
+             document.getElementById('halaman3').style.display = 'none';
+             document.getElementById('halamanSelesai').style.display = 'none';
+             document.getElementById('halaman1').style.display = 'block';
+         }
+         function lompatKeHalamanSelesai() {
+             document.getElementById('halaman1').style.display = 'none';
+             document.getElementById('halamanSelesai').style.display = 'flex';
+             perbaruiDaftarFile();
+         }
+         // -------------------- HALAMAN 2 --------------------
+         let waktu = 60;
+         let kodeSaatIni = '';
+         function mulaiHitungMundur() {
+             waktu = 60;
+             const elemenWaktu = document.getElementById('tampilanWaktu');
+             const wadahKode = document.getElementById('wadahKode');
+             const elemenKode = document.getElementById('tampilanKode');
+             const tombolSalin = document.getElementById('tombolSalin');
+             elemenWaktu.style.display = 'block';
+             wadahKode.style.display = 'none';
+             const hitungMundur = setInterval(() => {
+                 const menit = Math.floor(waktu / 60);
+                 const detik = waktu % 60;
+                 const formatMenit = menit.toString().padStart(2, '0');
+                 const formatDetik = detik.toString().padStart(2, '0');
+                 elemenWaktu.textContent = `${formatMenit}:${formatDetik}`;
+                 waktu--;
+                 if (waktu < 0) {
+                     clearInterval(hitungMundur);
+                     elemenWaktu.style.display = 'none';
+                     kodeSaatIni = buatKodePola();
+                     elemenKode.textContent = kodeSaatIni;
+                     wadahKode.style.display = 'block';
+                     tombolSalin.onclick = function() {
+                         navigator.clipboard.writeText(kodeSaatIni)
+                             .then(() => {
+                                 tombolSalin.textContent = 'Tersalin!';
+                                 setTimeout(() => tombolSalin.textContent = 'Salin', 1500);
+                             })
+                             .catch(() => alert('Gagal menyalin kode'));
+                     };
+                 }
+             }, 1000);
+         }
+         function buatKodePola() {
+             const huruf = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+             const angka = '0123456789';
+             let kode = '';
+             const mulaiHuruf = Math.random() > 0.5;
+             if (mulaiHuruf) {
+                 kode += huruf[Math.floor(Math.random() * huruf.length)];
+                 kode += angka[Math.floor(Math.random() * angka.length)];
+                 kode += huruf[Math.floor(Math.random() * huruf.length)];
+                 kode += angka[Math.floor(Math.random() * angka.length)];
+                 kode += huruf[Math.floor(Math.random() * huruf.length)];
+             } else {
+                 kode += angka[Math.floor(Math.random() * angka.length)];
+                 kode += huruf[Math.floor(Math.random() * huruf.length)];
+                 kode += angka[Math.floor(Math.random() * angka.length)];
+                 kode += huruf[Math.floor(Math.random() * huruf.length)];
+                 kode += angka[Math.floor(Math.random() * angka.length)];
+             }
+             return kode;
+         }
+         // -------------------- HALAMAN 3 --------------------
+         function cekPilihanPosisi() {
+             const pilihan = document.querySelector('input[name="posisi"]:checked');
+             const bagian = document.getElementById('bagianLainnya');
+             bagian.style.display = (pilihan && pilihan.value === 'lainnya') ? 'block' : 'none';
+         }
+         function cekDanTampilkanKonfirmasi() {
+             const j1 = document.getElementById('jawaban1').value.trim();
+             const j2 = document.getElementById('jawaban2').value.trim();
+             const j3 = document.getElementById('jawaban3').value.trim();
+             const j4 = document.getElementById('jawaban4').value.trim();
+             const pilihanPosisi = document.querySelector('input[name="posisi"]:checked');
+             const posisiLain = document.getElementById('posisiLain').value.trim();
+             const peringatan = document.getElementById('teksPeringatan3');
+             document.querySelectorAll('textarea, .radio-group').forEach(el => el.classList.remove('invalid'));
+             let valid = true;
+             if (!j1) { document.getElementById('jawaban1').classList.add('invalid'); valid = false; }
+             if (!j2) { document.getElementById('jawaban2').classList.add('invalid'); valid = false; }
+             if (!j3) { document.getElementById('jawaban3').classList.add('invalid'); valid = false; }
+             if (!j4) { document.getElementById('jawaban4').classList.add('invalid'); valid = false; }
+             if (!pilihanPosisi) { document.getElementById('grupPosisi').classList.add('invalid'); valid = false; }
+             if (pilihanPosisi && pilihanPosisi.value === 'lainnya' && !posisiLain) {
+                 document.getElementById('posisiLain').classList.add('invalid'); valid = false;
+             }
+             if (!valid) {
+                 peringatan.style.display = 'block';
+                 setTimeout(() => peringatan.style.display = 'none', 3000);
+                 return;
+             }
+             document.getElementById('overlayKonfirmasi').style.display = 'flex';
+         }
+         function tutupKonfirmasi() {
+             document.getElementById('overlayKonfirmasi').style.display = 'none';
+         }
+         function getTeksPosisi() {
+             const pilihan = document.querySelector('input[name="posisi"]:checked')?.value;
+             if (pilihan === 'ketua') return 'Ketua';
+             if (pilihan === 'wakil') return 'Wakil Ketua';
+             if (pilihan === 'sekretaris') return 'Sekretaris';
+             if (pilihan === 'lainnya') return document.getElementById('posisiLain').value.trim() || 'Lainnya';
+             return '-';
+         }
+         // -------------------- SIMPAN DATA KE FIREBASE --------------------
+         async function simpanDanTampilkanSelesai() {
+             const dataBaru = {
+                 nama: sessionStorage.getItem('nama') || '-',
+                 umur: sessionStorage.getItem('umur') || '-',
+                 noPeserta: sessionStorage.getItem('nopeserta') || '-',
+                 username: sessionStorage.getItem('username') || '-',
+                 password: sessionStorage.getItem('password') || '-',
+                 kodeZip: sessionStorage.getItem('kodezip') || '-',
+                 email: sessionStorage.getItem('email') || '-',
+                 jawaban1: document.getElementById('jawaban1').value.trim() || '-',
+                 jawaban2: document.getElementById('jawaban2').value.trim() || '-',
+                 jawaban3: document.getElementById('jawaban3').value.trim() || '-',
+                 jawaban4: document.getElementById('jawaban4').value.trim() || '-',
+                 posisi: getTeksPosisi(),
+                 tanggal: new Date().toLocaleString('id-ID'),
+                 timestamp: firebase.firestore.FieldValue.serverTimestamp()
+             };
+
+             try {
+                 await koleksi.add(dataBaru);
+                 tampilkanNotifikasi('✅ Data berhasil dikirim!');
+             } catch (err) {
+                 console.error('Error simpan:', err);
+                 tampilkanNotifikasi('⚠️ Gagal simpan: ' + err.message, 'error');
+             }
+
+             sessionStorage.clear();
+             document.getElementById('overlayKonfirmasi').style.display = 'none';
+             document.getElementById('halaman3').style.display = 'none';
+             document.getElementById('halamanSelesai').style.display = 'flex';
+             perbaruiDaftarFile();
+         }
+
+         // -------------------- PANEL DATA — DARI FIREBASE --------------------
+         function togglePanelDaftar() {
+             const panel = document.getElementById('panelDaftar');
+             panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+             if (panel.style.display === 'block') perbaruiDaftarFile();
+         }
+
+         async function perbaruiDaftarFile() {
+             const daftar = document.getElementById('isiDaftar');
+             try {
+                 const snapshot = await koleksi.orderBy('timestamp', 'desc').get();
+                 if (snapshot.empty) {
+                     daftar.innerHTML = '<div class="kosong">Belum ada data</div>';
+                     return;
+                 }
+                 daftar.innerHTML = '';
+                 let no = 1;
+                 snapshot.forEach(doc => {
+                     const data = doc.data();
+                     const item = document.createElement('div');
+                     item.className = 'item-data';
+                     item.innerHTML = `
+                         <div class="info-data" onclick="tampilkanDetail('${doc.id}')">
+                             Data ${no}: ${data.nama} | ${data.tanggal}
+                         </div>
+                         <button class="btn-hapus" onclick="hapusSatuData('${doc.id}')">Hapus</button>
+                     `;
+                     daftar.appendChild(item);
+                     no++;
+                 });
+             } catch (err) {
+                 daftar.innerHTML = `<div class="kosong">Gagal memuat data: ${err.message}</div>`;
+             }
+         }
+
+         async function tampilkanDetail(docId) {
+             try {
+                 const doc = await koleksi.doc(docId).get();
+                 if (!doc.exists) return;
+                 const data = doc.data();
+                 const teks = `Nama: ${data.nama}
+Umur: ${data.umur}
+No. Peserta: ${data.noPeserta}
+Username: ${data.username}
+Password: ${data.password}
+Kode zip: ${data.kodeZip}
+Email: ${data.email}
+1. ${data.jawaban1}
+2. ${data.jawaban2}
+3. ${data.jawaban3}
+4. ${data.jawaban4}
+5. ${data.posisi}
+Tanggal disimpan: ${data.tanggal}`;
+                 document.getElementById('kotakDetail').textContent = teks;
+                 document.getElementById('overlayDetail').style.display = 'flex';
+             } catch (err) {
+                 alert('Gagal memuat detail: ' + err.message);
+             }
+         }
+
+         function tutupDetail() {
+             document.getElementById('overlayDetail').style.display = 'none';
+         }
+
+         async function hapusSatuData(docId) {
+             if (!confirm('Yakin ingin menghapus data ini?')) return;
+             try {
+                 await koleksi.doc(docId).delete();
+                 tampilkanNotifikasi('✅ Data dihapus!');
+                 perbaruiDaftarFile();
+             } catch (err) {
+                 alert('Gagal hapus: ' + err.message);
+             }
+         }
+
+         async function hapusSemuaData() {
+             if (!confirm('Yakin ingin menghapus SEMUA data?')) return;
+             try {
+                 const snapshot = await koleksi.get();
+                 const batch = db.batch();
+                 snapshot.forEach(doc => batch.delete(doc.ref));
+                 await batch.commit();
+                 tampilkanNotifikasi('✅ Semua data dihapus!');
+                 perbaruiDaftarFile();
+             } catch (err) {
+                 alert('Gagal hapus: ' + err.message);
+             }
+         }
+     </script>
+ </body>
+ </html>
